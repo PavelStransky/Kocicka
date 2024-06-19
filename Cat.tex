@@ -155,15 +155,123 @@
 		\item $\lambda>\lambda_{0}$ (superradiant phase II, S2): $k=2$, stable dynamics.
 	\end{itemize}
 
+\section{Local dynamics}
+The effective (classical) Hamiltonian is given by
+\begin{equation}
+	\label{eq:Hcl}
+	H_{\mathrm{eff}}=\frac{\omega}{2}\left(p^{2}+q^{2}\right)+2\sqrt{2}j\mu q+m'\sqrt{8\lambda^{2}\left(q^{2}+\delta^{2}p^{2}\right)+\left(\frac{\omega}{2j}+2\sqrt{2}\mu q\right)^{2}}.
+\end{equation}
+
+The classical dynamics is governed by the Hamiltonian equations of motion
+\begin{equation}
+	\dot{\vector{x}}=\makematrix{\dot{p} \\ \dot{q}}=\makematrix{-\partial_{q}H_{\mathrm{eff}}(\vector{x}) \\ \partial_{p}H_{\mathrm{eff}}(\vector{x})}\equiv\vector{\mathcal{F}}(\vector{x}),
+\end{equation}
+where $\vector{x}=(p,q)$ is the phase space vector.
+The local tangent dynamics is given by
+\begin{equation}
+	\delta\vector{x}=\makematrix{\delta q \\ \delta p}=\matrix{J}(\vector{x})\delta\vector{x}_{0},
+\end{equation}
+where
+\begin{equation}
+	\matrix{J}(\vector{x})=\partialderivative{}{\vector{x}}\vector{\mathcal{F}}(\vector{x})=\makematrix{-\partial_{pq}H_{\mathrm{eff}} & -\partial_{qq}H_{\mathrm{eff}} \\ \partial_{pp}H_{\mathrm{eff}} & \partial_{pq}H_{\mathrm{eff}}}.
+\end{equation}
+The eigenvalues $\Lambda_{\pm}$ of the Jacobian matrix $\matrix{J}$ determine the stability of the local dynamics~\cite{Tabor1989,PilatowskyCameo2020}: if $\Lambda_{\pm}$ are imaginary (conjugate), the stationary point is stable (elliptic fixed point), whereas if $\Lambda$ are real, the stationary point is unstable (hyperbolic fixed point).
+Note that for the Hamiltonian dynamics conserving the volume of the phase space, the eigenvalues always sum to $0$, so their sign must be opposite (or both are zero).
+
+Specifically for the Rabi model~\eqref{eq:Hcl}, assuming that $\mu$ is small and can be taken as $\mu=0$, and knowing that the stationary point we are interested in is at $q=p=0$, the Jacobian matrix of the local dynamics is given by
+\begin{equation}
+	\matrix{J}=\begin{pmatrix}
+		0 & -\frac{16 m' j \lambda^{2}}{\omega} \\
+		\omega+\frac{16 m' j\lambda^{2}\delta^{2}}{\omega} & 0
+	\end{pmatrix}
+\end{equation}
+and its eigenvalues are
+\begin{equation}
+	\Lambda_{\pm}=\pm\frac{1}{\omega}\sqrt{-\left(16jm'\lambda^{2}+\omega^{2}\right)\left(16jm'\lambda^{2}\delta^{2}+\omega^{2}\right)},
+\end{equation}
+which are real for $\lambda_{c}<\lambda<\lambda_{0}$ and imaginary elsewhere.
+Hence for parameters~\eqref{eq:parameters}, the local dynamics is hyperbolic with 
+\begin{equation}
+	\Lambda_{\pm}=\pm\frac{\sqrt{35}}{8}\approx\pm0.73951;
+\end{equation}
+for details see Figure~\ref{fig:Lambda}.
+
+\begin{figure}[!h]
+	\centering\epsfig{file=Lambda.pdf,width=0.7\linewidth}
+	\caption{Dependence of the stability exponent $\Lambda$ on the control parameter $\lambda$ for parameters~\eqref{eq:parameters}; the value $\lambda=3/4$ is marked by the dashed vertical line.
+	Maximum value $\Lambda_{\mathrm{max}}=\frac{3}{4}$ is reached at $\lambda_{\mathrm{max}}=\sqrt{5/8}\approx0.7906$.
+	}
+	\label{fig:Lambda}
+\end{figure}   	
+
+The width of the initial Gaussian wave packet (coherent state) is reciprocal to the size parameter,
+\begin{equation}
+	\sigma\propto\frac{1}{\sqrt{R}},
+\end{equation}
+so semiclassically for some $R>R_0$, it takes an initially narrower wave packet time $\Delta t$ to reach the width of the wider wave packet for $R_{0}$,
+\begin{align}
+	\frac{\sigma}{\sigma_{0}}&=\sqrt{\frac{R_{0}}{R}}=\e^{\Lambda\Delta t}
+	&\Longrightarrow&&
+	\Delta t&=\frac{1}{2\Lambda}\ln\frac{R}{R_{0}}.
+\end{align}
+
+A prominent (and easily measurable) time $\tau$ of the wave packet dynamics is when the cat dies for the first time and $q\equiv\mean{\operator{q}}$ reaches its first minimum.
+It means that the wave packet leaves the stationary points, makes one revolution, approaches the stationary point, and leaves it again before it localises itself in one of the wells.
+If this time is $\tau_0$ for $R_{0}$, then for $R$ it is
+\begin{equation}
+	\tau=\tau_{0}+3\Delta t=\tau_{0}+\frac{3}{2\Lambda}\ln\frac{R}{R_{0}}.
+\end{equation}
+If we want the extremes of $q$ to be at the same time for different $R$, we have to rescale the time, $t'=t/s$, with $s$ given by
+\begin{equation}
+	\label{eq:s}
+	s=\frac{\tau}{\tau_{0}}=1+\frac{3}{2\Lambda\tau_{0}}\ln\frac{R}{R_{0}}.
+\end{equation}
+In the rescaled time, the cat dies faster at the beginning of the second revolution if $R$ grows because the derivative
+\begin{equation}
+	\partialderivative{q(t')}{t'}=\derivative{t}{t'}\partialderivative{q(t)}{t}=s\partialderivative{q(t)}{t}
+\end{equation}
+grows linearly with $s$. 
+Let us denote the maximum slope (in the absolute value) of $q(t')$ as $v'_{\mathrm{max}}$.
+
+\begin{figure}[!htbp]
+	\centering\epsfig{file=FS2.pdf,width=0.7\linewidth}
+	\caption{Dependence of the extremal slope of $q(t')$ at the time of the cat's death on the size parameter $R$. 
+	Numerical values for 7 different values of $R$ are shown by black dots. 
+	The red curve depicts the fit~\eqref{eq:scaling} with $\alpha=-0.0490$ and $\beta=-0.120$.}
+	\label{fig:MinScaling}
+\end{figure}   
+
+Figure~\ref{fig:MinScaling} shows how the effect of the death becomes more and more sudden.
+It scales logarithmically with the size parameter $R$,
+\begin{equation}
+	\label{eq:scaling}
+	\left.\partialderivative{q}{t'}\right|_{\mathrm{max}}=v'_{\mathrm{max}}=\alpha\log{R}+\beta
+\end{equation}
+(fitted values of coefficients $\alpha,\beta$ are given in the caption of the figure).
+On the other hand,
+\begin{equation}
+	v'_{\mathrm{max}}=sv_{\mathrm{max}}=\left(1+\frac{3}{2\Lambda\tau_{0}}\ln\frac{R}{R_{0}}\right)v_{\mathrm{max}},
+\end{equation}
+where we assume that $v_{\mathrm{max}\equiv}\left.\partialderivative{q}{t'}\right|_{\mathrm{max}}$ is independent of $R$.
+From the last two equations, it follows that the coefficients should be
+\begin{align}
+	\alpha&=\frac{3\ln{10}}{2\Lambda\tau_{0}}v_{\mathrm{max}}\approx0.23v_{\mathrm{max}}\approx-0.0499,\\
+	\beta&=1-\frac{3}{2\Lambda\tau_{0}}\ln{R_{0}}v_{\mathrm{max}}\approx0.54v_{\mathrm{max}}\approx-0.117,
+\end{align}
+that is indeed close to the fitted values.
+Value $v_{\mathrm{max}}\equiv v'_{\mathrm{max}}(R=100)\approx-0.217$ was used for the numerical calculations.
+
 \section{Numerical study}
 	In the calculations, the following values of the parameters are taken:
 	\begin{equation}
+		\label{eq:parameters}
 		\omega=1,\qquad
 		\delta=\frac{1}{2},\qquad
 		\lambda=\frac{3}{4},\qquad
+		j=\frac{1}{2},
 	\end{equation}
 	so the system is situated in the middle of phase S1.
-	We evolve the initially factorized state $\ket{\psi(0)}=\ket{-\frac{1}{2}}\otimes\ket{0}$ (both quasispin and field are in their lowest state) and calulate expectation values $\matrixelement{\psi(t)}{\bullet}{\psi(t)}$ of the following operators:
+	We evolve the initially factorized state $\ket{\psi(0)}=\ket{-\frac{1}{2}}\otimes\ket{0}$ (both quasispin and field are in their lowest state) and calculate expectation values $\matrixelement{\psi(t)}{\bullet}{\psi(t)}$ of the following operators:
 	\begin{itemize}
 		\item $J_{x}$ (first component of the quasispin operator),
 		\item $\operator{q}=\frac{1}{2\sqrt{jR}}\left(\operatorconjugate{b}+\operator{b}\right)$ (coordinate related to the field).
@@ -176,7 +284,7 @@ Note that similar behaviour is observed for operators $\operator{p}, \operator{J
 The product $\mu R$ is kept constant, which makes the curves roughly coincide with one another.
 The value of this product is chosen so that the first significant minimum of $q(t)$ is the deepest.
 
-Scalling $t'=st$ in Figures~\ref{fig:q} and~\ref{fig:Jx} makes the first pronounced minimum of $q$ at $t_{\mathrm{min}}\approx13R^{0.1}$ sit approximately at the same time $t'$.
+Scalling $t'=t/s$ in Figures~\ref{fig:q} and~\ref{fig:Jx} is applied; the value of $s$ is given by~\eqref{eq:s} for $R_{0}=100$ and $\tau_{0}=20.3$.
 
 The first small dip, observed in Figure~\ref{fig:q}~(b) at $t'\approx7$ is caused by different depths between the left and right Hamiltonian wells. 
 This difference gets smaller with decreasing $\mu$, and in the limit $R\rightarrow\infty$, $\mu R=\const$ vanishes.
@@ -197,7 +305,7 @@ This is related to the difference of phases between the wavepackets in both well
         \end{subfigure}
 		\caption{Expectation value $q(t)=\matrixelement{\psi(t)}{\operator{q}}{\psi(t)}$ for different system sizes $R$ and for a perturbative value of $\mu$ reciprocal to the system size, $\mu=0.13/R$.
 		The magnitude of the parity violation is observed to be independent of the system size. (a) Full image. (b) Detail of the pre-parity-violation. 
-		Note that in both panels the time is rescalled via $t'=st$ and $s$ is indicated in the legend of panel (b).}
+		Note that in both panels, the time is rescaled via~\eqref{eq:s} and $s$ is indicated in the legend of panel (b).}
 		\label{fig:q}
 	\end{figure}   	
 
@@ -207,7 +315,7 @@ This is related to the difference of phases between the wavepackets in both well
         \end{subfigure}
         \hfill
         \begin{subfigure}{0.49\linewidth}
-            \centering\epsfig{file=qdetail.pdf,width=\linewidth}
+            \centering\epsfig{file=Jxdetail.pdf,width=\linewidth}
         \end{subfigure}
 		\caption{The same as in Figure~\ref{fig:q}, but here for expectation value $J_{x}(t)=\matrixelement{\psi(t)}{\operator{J}_{x}}{\psi(t)}$.
 		Note the fast oscillations caused by the detuning given by parameter $R$.}
